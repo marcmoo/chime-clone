@@ -84,7 +84,9 @@ const Header: FC = () => {
 
         <nav>
           {user ? (
-            <Styled.Span>{`${user.firstName} ${user.secondName}`}</Styled.Span>
+            <Link href="/dashboard">
+              <Styled.Span>{`${user.firstName} ${user.lastName}`}</Styled.Span>
+            </Link>
           ) : (
             <Link href="/users/log-in">
               <Styled.Span>Log In</Styled.Span>

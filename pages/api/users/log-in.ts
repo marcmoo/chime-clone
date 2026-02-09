@@ -25,7 +25,7 @@ const handler = async (
             res.status(200).send(
               new HttpResponse(200, {
                 firstName: foundUser.firstName,
-                secondName: foundUser.secondName,
+                lastName: foundUser.lastName,
                 email: foundUser.email,
               })
             );

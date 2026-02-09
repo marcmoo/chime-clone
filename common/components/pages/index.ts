@@ -11,3 +11,9 @@ export * as SignUpComponents from "./sign-up";
 export * as SecurityAndControlComponents from "./security-and-control";
 
 export * as ChimeFinancialComponents from "./chime-financial";
+
+export * as DashboardComponents from "./dashboard";
+
+export * as TransferComponents from "./transfer";
+
+export * as AdminComponents from "./admin";

@@ -3,7 +3,7 @@ import { SignUpComponents } from "@components/pages";
 import type { RegisterValues } from "@interfaces";
 import type {
   FirstName,
-  SecondName,
+  LastName,
   Email,
   Password,
   NextPageWithLayout,
@@ -22,7 +22,7 @@ import { ModalLayout } from "@components/composition";
 
 interface FormValues {
   firstName: FirstName;
-  secondName: SecondName;
+  lastName: LastName;
   email: Email;
   password: Password;
   passwordRepeated: Password;
@@ -105,31 +105,31 @@ const SignUpPage: NextPageWithLayout<PageData> = props => {
             })}
           />
 
-          {/* Second name */}
+          {/* Last name */}
           <SignUpComponents.Form.Input
-            type="secondName"
-            placeholder="First name"
-            {...register("secondName", {
+            type="text"
+            placeholder="Last name"
+            {...register("lastName", {
               required: "required",
               minLength: {
                 value: 2,
-                message: "Please correct your second name",
+                message: "Please correct your last name",
               },
             })}
           />
         </SignUpComponents.Form.Splitter>
 
-        {/* First & second name errors */}
-        {(errors.firstName || errors.secondName) && (
+        {/* First & last name errors */}
+        {(errors.firstName || errors.lastName) && (
           <SignUpComponents.Form.Splitter>
             {errors.firstName && (
               <SignUpComponents.Form.Error>
                 {errors.firstName.message}
               </SignUpComponents.Form.Error>
             )}
-            {errors.secondName && (
+            {errors.lastName && (
               <SignUpComponents.Form.Error>
-                {errors.secondName.message}
+                {errors.lastName.message}
               </SignUpComponents.Form.Error>
             )}
           </SignUpComponents.Form.Splitter>

@@ -1,8 +1,20 @@
 import type { RegisterValues } from "@interfaces";
 
-import { fetchWrapper, HttpResponse } from "@api";
+import { gql } from "@apollo/client";
+import client from "@lib/apollo-client";
 
-const { NEXT_PUBLIC_API_HOST } = process.env;
+const SIGNUP_MUTATION = gql`
+  mutation Signup($signupInput: SignupInput!) {
+    signup(signupInput: $signupInput) {
+      accessToken
+      user {
+        email
+        firstName
+        lastName
+      }
+    }
+  }
+`;
 
 const registerUser = async (
   registerData: RegisterValues,
@@ -10,30 +22,26 @@ const registerUser = async (
   onFailure?: (msg: string) => void
 ): Promise<boolean> => {
   try {
-    const response: HttpResponse = await fetchWrapper
-      .post({
-        url: `${NEXT_PUBLIC_API_HOST}/users/sign-up`,
-        body: JSON.stringify(registerData),
-      })
-      .then(res => res.json());
+    await client.mutate({
+      mutation: SIGNUP_MUTATION,
+      variables: {
+        signupInput: {
+          email: registerData.email,
+          password: registerData.password,
+          firstName: registerData.firstName,
+          lastName: registerData.lastName,
+        },
+      },
+    });
 
-    if (response.success) {
-      onSuccess && onSuccess();
-
-      return true;
-    } else {
-      if (onFailure) {
-        const { msg } = response.body as { msg: string };
-
-        onFailure(msg);
-      }
-      return false;
-    }
-  } catch (error) {
-    onFailure && onFailure("Internal Server Error");
-
-    console.error(error);
-
+    onSuccess && onSuccess();
+    return true;
+  } catch (error: any) {
+    const msg =
+      error?.graphQLErrors?.[0]?.message ||
+      error?.message ||
+      "Internal Server Error";
+    onFailure && onFailure(msg);
     return false;
   }
 };

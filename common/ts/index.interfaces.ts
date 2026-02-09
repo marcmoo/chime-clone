@@ -1,11 +1,9 @@
-import type { User } from "@prisma/client";
-
 import type {
   Email,
   Password,
   Id,
   FirstName,
-  SecondName,
+  LastName,
   HttpResponseStatusCode,
   HttpResponseStatusMessage,
 } from "@types";
@@ -40,17 +38,17 @@ export interface NextImageProps {
  * Client-side user-related data.
  */
 export interface SafeUser {
-  email: User["email"];
-  firstName: User["firstName"];
-  secondName: User["secondName"];
+  email: string;
+  firstName: string;
+  lastName: string;
 }
 
 /**
- * Data needed to register an user.
+ * Data needed to register a user.
  */
 export interface RegisterValues {
   firstName: FirstName;
-  secondName: SecondName;
+  lastName: LastName;
   email: Email;
   password: Password;
 }
@@ -58,11 +56,10 @@ export interface RegisterValues {
 /**
  * Server-side user-related data.
  */
-// export interface FullUser extends SafeUser {
-//   password: Password;
-//   id: Id;
-// }
-export interface FullUser extends User {}
+export interface FullUser extends SafeUser {
+  password: Password;
+  id: Id;
+}
 
 export interface HttpResponseStatus {
   readonly code: HttpResponseStatusCode;

@@ -24,6 +24,7 @@
       "@api": ["common/api/index.ts"],
       "@utils": ["common/utils/index.ts"],
       "@lib": ["common/lib/index.ts"],
+      "@lib/*": ["common/lib/*"],
       "@services": ["common/services/index.ts"],
       "@database": ["common/database/index.ts"],
       "@pages/*": ["pages/*"],

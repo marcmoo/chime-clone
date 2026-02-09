@@ -27,7 +27,7 @@ const handler = async (
       }
 
       case "PUT": {
-        const { firstName, secondName, email, password, id } =
+        const { firstName, lastName, email, password, id } =
           req.body as FullUser;
 
         if (USERS.some(user => user.email === email)) {
@@ -37,7 +37,7 @@ const handler = async (
             })
           );
         } else {
-          USERS.push({ firstName, secondName, email, password, id });
+          USERS.push({ firstName, lastName, email, password, id });
           res.status(201).send(new HttpResponse(201));
         }
 

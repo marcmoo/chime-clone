@@ -46,7 +46,7 @@ const LogInPage: NextPageWithLayout = () => {
   };
 
   useEffect(() => {
-    if (user) console.info(`Logged in as ${user.firstName} ${user.secondName}`);
+    if (user) console.info(`Logged in as ${user.firstName} ${user.lastName}`);
   }, [user]);
 
   return (

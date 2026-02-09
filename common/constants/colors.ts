@@ -20,6 +20,17 @@ const COLORS: { [key: string]: HexColor } = {
 
   WHITE: "#FFFFFF",
   BLACK: "#000000",
+
+  // Dark theme
+  BG_DARK: "#001F17",
+  BG_DARK_SECONDARY: "#002820",
+  BG_DARK_CARD: "#003B2F",
+  DARK_GREEN: "#004D3D",
+  BRIGHT_GREEN: "#2DE28D",
+  TEXT_WHITE: "#FFFFFF",
+  TEXT_GRAY_LIGHT: "#B0B0B0",
+  TEXT_GRAY_MEDIUM: "#808080",
+  BORDER_DARK: "#004D3D",
 };
 
 export default COLORS;

@@ -1,15 +1,25 @@
-import type { Email, Password } from "@types";
-
 import type { SafeUser } from "@interfaces";
 
-import { fetchWrapper, HttpResponse } from "@api";
+import { gql } from "@apollo/client";
+import client from "@lib/apollo-client";
 
 interface LoginValues {
-  email: Email;
-  password: Password;
+  email: string;
+  password: string;
 }
 
-const { NEXT_PUBLIC_API_HOST } = process.env;
+const LOGIN_MUTATION = gql`
+  mutation Login($loginInput: LoginInput!) {
+    login(loginInput: $loginInput) {
+      accessToken
+      user {
+        email
+        firstName
+        lastName
+      }
+    }
+  }
+`;
 
 const loginUser = async (
   loginData: LoginValues,
@@ -17,32 +27,33 @@ const loginUser = async (
   onFailure?: (msg: string) => void
 ): Promise<boolean> => {
   try {
-    const response: HttpResponse = await fetchWrapper
-      .post({
-        url: `${NEXT_PUBLIC_API_HOST}/users/log-in`,
-        body: JSON.stringify(loginData),
-      })
-      .then(res => res.json());
+    const { data } = await client.mutate({
+      mutation: LOGIN_MUTATION,
+      variables: {
+        loginInput: {
+          email: loginData.email,
+          password: loginData.password,
+        },
+      },
+    });
 
-    if (response.success) {
-      const safeUserData = response.body as SafeUser;
+    const { accessToken, user } = data.login;
+    localStorage.setItem("accessToken", accessToken);
 
-      onSuccess && onSuccess(safeUserData);
+    const safeUserData: SafeUser = {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    };
 
-      return true;
-    } else {
-      if (onFailure) {
-        const { msg } = response.body as { msg: string };
-
-        onFailure(msg);
-      }
-      return false;
-    }
-  } catch (error) {
-    onFailure && onFailure("Internal Server Error");
-
-    console.error(error);
-
+    onSuccess && onSuccess(safeUserData);
+    return true;
+  } catch (error: any) {
+    const msg =
+      error?.graphQLErrors?.[0]?.message ||
+      error?.message ||
+      "Internal Server Error";
+    onFailure && onFailure(msg);
     return false;
   }
 };

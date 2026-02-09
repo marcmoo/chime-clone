@@ -6,7 +6,7 @@ const users: FullUser[] = [
   {
     id: generateId(),
     firstName: "John",
-    secondName: "Doe",
+    lastName: "Doe",
     email: "john@doe.com",
     // @@@ Hashed "doe123"
     password: "$2b$10$IkP2AUvw8GY6Wu6yl1PlSOU/9DrUraYRFN/FlkpAJTmofqZLVU.US",
@@ -14,7 +14,7 @@ const users: FullUser[] = [
   {
     id: generateId(),
     firstName: "Jane",
-    secondName: "Doe",
+    lastName: "Doe",
     email: "jane@doe.com",
     // @@@ Hashed "doe123"
     password: "$2b$10$HexkU7UDaHlqOV6LB/Oek.Ipt4vCrhTJbVQasmo2BxvhwedVHPyT6",
@@ -22,7 +22,7 @@ const users: FullUser[] = [
   {
     id: generateId(),
     firstName: "Jan",
-    secondName: "Kowalski",
+    lastName: "Kowalski",
     email: "jan@kowalski.com",
     // @@@ Hashed "kowal123"
     password: "$2b$10$OKuxdzGueg4rmIQXWzLDKej1Csi9ZamrIDVGovOEYEBkTnPOyknEi",
@@ -30,7 +30,7 @@ const users: FullUser[] = [
   {
     id: generateId(),
     firstName: "Jan",
-    secondName: "Nowak",
+    lastName: "Nowak",
     email: "jan@nowak.com",
     // @@@ Hashed "nowak123"
     password: "$2b$10$QB1XUAHk0E31PBk8mzKymuB/OV8KsfIldp.tNqkF6DkW.1Y9zlBSm",
@@ -38,7 +38,7 @@ const users: FullUser[] = [
   {
     id: generateId(),
     firstName: "Jan",
-    secondName: "Jankowski",
+    lastName: "Jankowski",
     email: "jan@jankowski.com",
     // @@@ Hashed "janek123"
     password: "$2b$10$MF8DtZFx2OkKrEJis7zN6etrC6TpsoUcsoFZeQVulDm3dFPNYs9eW",
@@ -46,7 +46,7 @@ const users: FullUser[] = [
   {
     id: generateId(),
     firstName: "dsa",
-    secondName: "dsa",
+    lastName: "dsa",
     email: "dsa@dsa.dsa",
     // @@@ Hashed "dsadsa"
     password: "$2b$10$3z6W.Fm8QamjeHYdZ/RLAOfrRVg.TQq/ux5e9Mirr3XGWhp3.6sIK",
