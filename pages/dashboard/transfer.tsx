@@ -90,7 +90,7 @@ const TransferPage: NextPageWithLayout = () => {
   const [transferMoney, { loading: transferring }] = useMutation(
     TRANSFER_MONEY,
     {
-      refetchQueries: [{ query: MY_ACCOUNTS }],
+      refetchQueries: ["MyAccounts", "Transactions"],
     }
   );
 
