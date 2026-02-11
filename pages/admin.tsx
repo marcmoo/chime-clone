@@ -103,6 +103,7 @@ const AdminPage: NextPageWithLayout = () => {
   // Create form state
   const [newName, setNewName] = useState("");
   const [newAmount, setNewAmount] = useState("");
+  const [newSign, setNewSign] = useState<"+" | "-">("-");
   const [newDate, setNewDate] = useState(toLocalDatetime(new Date()));
   const [depositAmount, setDepositAmount] = useState("");
   const [depositDate, setDepositDate] = useState(toLocalDatetime(new Date()));
@@ -125,6 +126,9 @@ const AdminPage: NextPageWithLayout = () => {
   const accounts = accountsData?.myAccounts ?? [];
   const checkingAccount = accounts.find(
     (a: any) => a.accountType === "CHECKING"
+  );
+  const savingsAccount = accounts.find(
+    (a: any) => a.accountType === "SAVINGS"
   );
 
   const { data: txData } = useQuery(TRANSACTIONS, {
@@ -195,9 +199,10 @@ const AdminPage: NextPageWithLayout = () => {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const amt = parseFloat(newAmount);
-    if (isNaN(amt) || !newName.trim() || !checkingAccount) return;
+    const raw = parseFloat(newAmount);
+    if (isNaN(raw) || raw <= 0 || !newName.trim() || !checkingAccount) return;
 
+    const amt = newSign === "-" ? -raw : raw;
     const type = amt >= 0 ? "DIRECT_DEPOSIT" : "PURCHASE";
 
     await createTransaction({
@@ -214,6 +219,7 @@ const AdminPage: NextPageWithLayout = () => {
     });
     setNewName("");
     setNewAmount("");
+    setNewSign("-");
     setNewDate(toLocalDatetime(new Date()));
   };
 
@@ -255,14 +261,25 @@ const AdminPage: NextPageWithLayout = () => {
 
       <h2 style={{ color: "#fff", marginBottom: "1.5rem" }}>Admin Panel</h2>
 
-      {checkingAccount && (
-        <AC.BalanceCard>
-          <div className="label">Checking Balance</div>
-          <div className="balance">
-            {formatCurrency(checkingAccount.balance)}
-          </div>
-        </AC.BalanceCard>
-      )}
+      <div style={{ display: "flex", gap: "1rem" }}>
+        {checkingAccount && (
+          <AC.BalanceCard style={{ flex: 1 }}>
+            <div className="label">Checking Balance</div>
+            <div className="balance">
+              {formatCurrency(checkingAccount.balance)}
+            </div>
+          </AC.BalanceCard>
+        )}
+
+        {savingsAccount && (
+          <AC.BalanceCard style={{ flex: 1 }}>
+            <div className="label">Savings Balance</div>
+            <div className="balance">
+              {formatCurrency(savingsAccount.balance)}
+            </div>
+          </AC.BalanceCard>
+        )}
+      </div>
 
       <AC.SectionTitle>Quick Deposit</AC.SectionTitle>
       <AC.FormRow onSubmit={handleDeposit}>
@@ -302,12 +319,24 @@ const AdminPage: NextPageWithLayout = () => {
             onChange={e => setNewName(e.target.value)}
           />
         </AC.InputGroup>
+        <AC.InputGroup style={{ maxWidth: "5rem" }}>
+          <AC.InputLabel>+/−</AC.InputLabel>
+          <AC.Input
+            as="select"
+            value={newSign}
+            onChange={(e: any) => setNewSign(e.target.value)}
+          >
+            <option value="-">−</option>
+            <option value="+">+</option>
+          </AC.Input>
+        </AC.InputGroup>
         <AC.InputGroup>
           <AC.InputLabel>Amount</AC.InputLabel>
           <AC.Input
             type="number"
             step="0.01"
-            placeholder="-25.00"
+            min="0.01"
+            placeholder="25.00"
             value={newAmount}
             onChange={e => setNewAmount(e.target.value)}
           />

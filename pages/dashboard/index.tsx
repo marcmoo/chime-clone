@@ -146,11 +146,13 @@ const DashboardPage: NextPageWithLayout = () => {
   const { data: checkingTxData } = useQuery(TRANSACTIONS, {
     skip: !checkingAccount?.id,
     variables: { accountId: checkingAccount?.id },
+    fetchPolicy: "cache-and-network",
   });
 
   const { data: savingsTxData } = useQuery(TRANSACTIONS, {
     skip: !savingsAccount?.id,
     variables: { accountId: savingsAccount?.id },
+    fetchPolicy: "cache-and-network",
   });
 
   useEffect(() => {
