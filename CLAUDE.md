@@ -76,6 +76,16 @@ Configured in `tsconfig.json` — use these for imports:
 
 **Account numbers:** 15-digit numbers starting with `3`, randomly generated on creation.
 
+## Production Deployment
+- **Server:** Hostinger KVM 2 VPS (193.46.198.236)
+- **Path:** `/var/www/chime-clone`
+- **Process manager:** PM2 (name: `chime-web`, port 3001)
+- **Nginx:** Port 8080 proxying to localhost:3001
+- **URL:** `http://193.46.198.236:8080`
+- **Backend API:** `http://193.46.198.236/chime/graphql`
+- **Deploy script:** `./deploy-production.sh`
+- `NEXT_PUBLIC_GRAPHQL_URL` must be set at **build time** (baked into client bundle)
+
 ## Backend (chime-clone-api)
 
 Separate NestJS repo at `~/projects/chime-clone-api`. GraphQL code-first, TypeORM + MySQL.
@@ -85,7 +95,7 @@ Separate NestJS repo at `~/projects/chime-clone-api`. GraphQL code-first, TypeOR
 - Auth: JWT strategy with `GqlAuthGuard` and `@CurrentUser` decorator
 - Seed: `npm run seed` creates test users (john@doe.com / jane@doe.com, password: doe123)
 - Transaction mutations: `createTransaction`, `transferMoney`, `updateTransaction`, `deleteTransaction`
-- `synchronize: true` in TypeORM config (no migrations — schema auto-syncs)
+- `synchronize: false` in production (true in dev) — use seed script for schema creation
 
 ## Formatting Conventions
 
