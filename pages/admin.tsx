@@ -10,8 +10,9 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { useUser } from "@hooks";
 import { DashboardLayout } from "@components/composition";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000";
+const API_BASE_URL = (
+  process.env.NEXT_PUBLIC_GRAPHQL_URL || "http://localhost:4000/graphql"
+).replace("/graphql", "");
 
 const MY_ACCOUNTS = gql`
   query MyAccounts {
