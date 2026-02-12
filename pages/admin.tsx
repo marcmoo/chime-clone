@@ -10,6 +10,9 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { useUser } from "@hooks";
 import { DashboardLayout } from "@components/composition";
 
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000";
+
 const MY_ACCOUNTS = gql`
   query MyAccounts {
     myAccounts {
@@ -30,6 +33,8 @@ const TRANSACTIONS = gql`
       description
       status
       transactionDate
+      frontImageUrl
+      backImageUrl
     }
   }
 `;
@@ -67,6 +72,16 @@ const DELETE_TRANSACTION = gql`
   }
 `;
 
+const REMOVE_TRANSACTION_IMAGES = gql`
+  mutation RemoveTransactionImages($id: ID!) {
+    removeTransactionImages(id: $id) {
+      id
+      frontImageUrl
+      backImageUrl
+    }
+  }
+`;
+
 const formatCurrency = (amount: number): string =>
   new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -93,6 +108,8 @@ interface TransactionItem {
   description?: string;
   status: string;
   transactionDate: string;
+  frontImageUrl?: string;
+  backImageUrl?: string;
 }
 
 const AdminPage: NextPageWithLayout = () => {
@@ -113,6 +130,9 @@ const AdminPage: NextPageWithLayout = () => {
   const [editName, setEditName] = useState("");
   const [editAmount, setEditAmount] = useState("");
 
+  // Check image modal state
+  const [selectedTx, setSelectedTx] = useState<TransactionItem | null>(null);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -131,39 +151,33 @@ const AdminPage: NextPageWithLayout = () => {
     (a: any) => a.accountType === "SAVINGS"
   );
 
+  const refetchConfig = [
+    { query: MY_ACCOUNTS },
+    {
+      query: TRANSACTIONS,
+      variables: { accountId: checkingAccount?.id },
+    },
+  ];
+
   const { data: txData } = useQuery(TRANSACTIONS, {
     skip: !checkingAccount?.id,
     variables: { accountId: checkingAccount?.id },
   });
 
   const [createTransaction] = useMutation(CREATE_TRANSACTION, {
-    refetchQueries: [
-      { query: MY_ACCOUNTS },
-      {
-        query: TRANSACTIONS,
-        variables: { accountId: checkingAccount?.id },
-      },
-    ],
+    refetchQueries: refetchConfig,
   });
 
   const [updateTransaction] = useMutation(UPDATE_TRANSACTION, {
-    refetchQueries: [
-      { query: MY_ACCOUNTS },
-      {
-        query: TRANSACTIONS,
-        variables: { accountId: checkingAccount?.id },
-      },
-    ],
+    refetchQueries: refetchConfig,
   });
 
   const [deleteTransaction] = useMutation(DELETE_TRANSACTION, {
-    refetchQueries: [
-      { query: MY_ACCOUNTS },
-      {
-        query: TRANSACTIONS,
-        variables: { accountId: checkingAccount?.id },
-      },
-    ],
+    refetchQueries: refetchConfig,
+  });
+
+  const [removeTransactionImages] = useMutation(REMOVE_TRANSACTION_IMAGES, {
+    refetchQueries: refetchConfig,
   });
 
   useEffect(() => {
@@ -252,6 +266,23 @@ const AdminPage: NextPageWithLayout = () => {
     await deleteTransaction({ variables: { id } });
   };
 
+  const handleRemovePhotos = async () => {
+    if (!selectedTx) return;
+    if (!confirm("Remove check photos from this deposit?")) return;
+    await removeTransactionImages({ variables: { id: selectedTx.id } });
+    setSelectedTx(null);
+  };
+
+  const handleDeleteDeposit = async () => {
+    if (!selectedTx) return;
+    if (!confirm("Delete this deposit? Balance will be reversed.")) return;
+    await deleteTransaction({ variables: { id: selectedTx.id } });
+    setSelectedTx(null);
+  };
+
+  const hasImages = (tx: TransactionItem) =>
+    !!(tx.frontImageUrl || tx.backImageUrl);
+
   return (
     <AC.AdminContainer>
       <Head>
@@ -320,13 +351,13 @@ const AdminPage: NextPageWithLayout = () => {
           />
         </AC.InputGroup>
         <AC.InputGroup style={{ maxWidth: "5rem" }}>
-          <AC.InputLabel>+/−</AC.InputLabel>
+          <AC.InputLabel>+/&minus;</AC.InputLabel>
           <AC.Input
             as="select"
             value={newSign}
             onChange={(e: any) => setNewSign(e.target.value)}
           >
-            <option value="-">−</option>
+            <option value="-">&minus;</option>
             <option value="+">+</option>
           </AC.Input>
         </AC.InputGroup>
@@ -374,15 +405,29 @@ const AdminPage: NextPageWithLayout = () => {
           </div>
         ) : (
           transactions.map(tx => (
-            <AC.TableRow key={tx.id}>
+            <AC.TableRow
+              key={tx.id}
+              onClick={() => {
+                if (hasImages(tx)) setSelectedTx(tx);
+              }}
+              style={{
+                cursor: hasImages(tx) ? "pointer" : "default",
+              }}
+            >
               <AC.Cell>
                 {editingId === tx.id ? (
                   <AC.InlineInput
                     value={editName}
                     onChange={e => setEditName(e.target.value)}
+                    onClick={e => e.stopPropagation()}
                   />
                 ) : (
-                  tx.merchantName || tx.description || tx.transactionType
+                  <>
+                    {tx.merchantName || tx.description || tx.transactionType}
+                    {hasImages(tx) && (
+                      <AC.ImageBadge>check</AC.ImageBadge>
+                    )}
+                  </>
                 )}
               </AC.Cell>
               <AC.Cell $positive={tx.amount > 0}>
@@ -392,6 +437,7 @@ const AdminPage: NextPageWithLayout = () => {
                     step="0.01"
                     value={editAmount}
                     onChange={e => setEditAmount(e.target.value)}
+                    onClick={e => e.stopPropagation()}
                   />
                 ) : (
                   <>
@@ -403,7 +449,7 @@ const AdminPage: NextPageWithLayout = () => {
               <AC.Cell className="date">
                 {formatDate(tx.transactionDate)}
               </AC.Cell>
-              <AC.Actions>
+              <AC.Actions onClick={e => e.stopPropagation()}>
                 {editingId === tx.id ? (
                   <>
                     <AC.ActionButton onClick={handleSaveEdit}>
@@ -431,6 +477,54 @@ const AdminPage: NextPageWithLayout = () => {
           ))
         )}
       </AC.Table>
+
+      {selectedTx && (
+        <AC.Overlay onClick={() => setSelectedTx(null)}>
+          <AC.ModalBox onClick={e => e.stopPropagation()}>
+            <AC.ModalTitle>
+              Check Deposit &mdash;{" "}
+              {selectedTx.merchantName || "Mobile Check Deposit"}
+            </AC.ModalTitle>
+            <AC.ModalSubtitle>
+              {formatCurrency(selectedTx.amount)} on{" "}
+              {formatDate(selectedTx.transactionDate)}
+            </AC.ModalSubtitle>
+
+            <AC.ImageRow>
+              {selectedTx.frontImageUrl && (
+                <AC.ImageCard>
+                  <div className="label">Front of Check</div>
+                  <img
+                    src={`${API_BASE_URL}${selectedTx.frontImageUrl}`}
+                    alt="Front of check"
+                  />
+                </AC.ImageCard>
+              )}
+              {selectedTx.backImageUrl && (
+                <AC.ImageCard>
+                  <div className="label">Back of Check</div>
+                  <img
+                    src={`${API_BASE_URL}${selectedTx.backImageUrl}`}
+                    alt="Back of check"
+                  />
+                </AC.ImageCard>
+              )}
+            </AC.ImageRow>
+
+            <AC.ModalActions>
+              <AC.ModalCloseButton onClick={() => setSelectedTx(null)}>
+                Close
+              </AC.ModalCloseButton>
+              <AC.RemovePhotosButton onClick={handleRemovePhotos}>
+                Remove Photos
+              </AC.RemovePhotosButton>
+              <AC.ModalDeleteButton onClick={handleDeleteDeposit}>
+                Delete Deposit
+              </AC.ModalDeleteButton>
+            </AC.ModalActions>
+          </AC.ModalBox>
+        </AC.Overlay>
+      )}
     </AC.AdminContainer>
   );
 };

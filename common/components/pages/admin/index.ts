@@ -20,3 +20,17 @@ export {
   InlineInput,
   SectionTitle,
 } from "./TransactionTable.styled";
+
+export {
+  Overlay,
+  ModalBox,
+  ModalTitle,
+  ModalSubtitle,
+  ImageRow,
+  ImageCard,
+  ModalActions,
+  ModalCloseButton,
+  RemovePhotosButton,
+  ModalDeleteButton,
+  ImageBadge,
+} from "./CheckImageModal.styled";

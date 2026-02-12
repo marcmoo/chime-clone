@@ -29,7 +29,7 @@ No test framework is configured.
 - `pages/` — Next.js file-based routing
   - `pages/dashboard/index.tsx` — Dark-themed dashboard with accounts + tabbed transactions
   - `pages/dashboard/transfer.tsx` — Move Money page with confirmation modal
-  - `pages/admin.tsx` — Admin panel for transaction CRUD (deposit, create, edit, delete)
+  - `pages/admin.tsx` — Admin panel for transaction CRUD (deposit, create, edit, delete) + check image audit modal
   - `pages/users/log-in.tsx` / `pages/users/sign-up.tsx` — Auth pages
 - `common/` — All shared code, organized by concern:
   - `components/composition/` — Layouts: `MainLayout`, `ModalLayout`, `DashboardLayout`
@@ -68,13 +68,15 @@ Configured in `tsconfig.json` — use these for imports:
 
 **Account auto-creation:** On signup, the backend auto-creates both a CHECKING and SAVINGS account ($0 balance). Frontend dashboard has a fallback that creates missing accounts via `createAccount` mutation (uses `useRef` guard to prevent duplicates from React 18 strict mode).
 
-**GraphQL:** Apollo Client 3.x (not 4.x — v4 has incompatible module exports with Next.js 12). Endpoint at `localhost:4000/graphql`. Key queries: `MY_ACCOUNTS`, `TRANSACTIONS`, `ME_QUERY`. Key mutations: `TRANSFER_MONEY`, `CREATE_TRANSACTION`, `UPDATE_TRANSACTION`, `DELETE_TRANSACTION`.
+**GraphQL:** Apollo Client 3.x (not 4.x — v4 has incompatible module exports with Next.js 12). Endpoint at `localhost:4000/graphql`. Key queries: `MY_ACCOUNTS`, `TRANSACTIONS`, `ME_QUERY`. Key mutations: `TRANSFER_MONEY`, `CREATE_TRANSACTION`, `UPDATE_TRANSACTION`, `DELETE_TRANSACTION`, `REMOVE_TRANSACTION_IMAGES`.
 
 **Transfer logic:** Creates two linked transactions (debit + credit) with same `transactionDate` and opposite amounts. Deleting a transfer transaction auto-deletes its paired transaction and reverses both account balances.
 
 **Transaction date:** All forms (deposit, create transaction, transfer) include a date/time picker defaulting to now. Backend accepts optional `transactionDate`; falls back to `new Date()`. Transactions are sorted by `transactionDate DESC`.
 
 **Account numbers:** 15-digit numbers starting with `3`, randomly generated on creation.
+
+**Check deposit audit (admin):** Transactions with check images (`frontImageUrl`/`backImageUrl`) show an image badge in the admin table. Clicking a deposit row opens a modal displaying front/back check images. Modal has three actions: "Close", "Remove Photos" (deletes images but keeps the deposit), and "Delete Deposit" (reverses balance and removes the transaction entirely). Images are served from backend at `API_BASE_URL + imageUrl`.
 
 ## Production Deployment
 - **Server:** Hostinger KVM 2 VPS (193.46.198.236)
@@ -91,11 +93,14 @@ Configured in `tsconfig.json` — use these for imports:
 Separate NestJS repo at `~/projects/chime-clone-api`. GraphQL code-first, TypeORM + MySQL.
 
 - 4 entities: User, Account, Transaction, Card
-- 5 modules: Users, Auth, Accounts, Transactions, Cards + SeedModule
+- 6 modules: Users, Auth, Accounts, Transactions, Cards, Uploads + SeedModule
 - Auth: JWT strategy with `GqlAuthGuard` and `@CurrentUser` decorator
 - Seed: `npm run seed` creates test users (john@doe.com / jane@doe.com, password: doe123)
-- Transaction mutations: `createTransaction`, `transferMoney`, `updateTransaction`, `deleteTransaction`
-- `synchronize: false` in production (true in dev) — use seed script for schema creation
+- Transaction mutations: `createTransaction`, `transferMoney`, `updateTransaction`, `deleteTransaction`, `removeTransactionImages`
+- Transaction entity has `frontImageUrl` and `backImageUrl` nullable columns for check deposit images
+- File uploads: `POST /uploads/check-images` REST endpoint (multer + sharp compression)
+- Static file serving: `/uploads` path serves uploaded images
+- `synchronize: false` in production (true in dev) — use migration SQL scripts for schema changes
 
 ## Formatting Conventions
 
