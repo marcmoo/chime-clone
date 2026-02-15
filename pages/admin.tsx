@@ -125,6 +125,8 @@ const AdminPage: NextPageWithLayout = () => {
   const [newDate, setNewDate] = useState(toLocalDatetime(new Date()));
   const [depositAmount, setDepositAmount] = useState("");
   const [depositDate, setDepositDate] = useState(toLocalDatetime(new Date()));
+  const [interestApy, setInterestApy] = useState("");
+  const [interestDate, setInterestDate] = useState(toLocalDatetime(new Date()));
 
   // Edit state
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -158,11 +160,19 @@ const AdminPage: NextPageWithLayout = () => {
       query: TRANSACTIONS,
       variables: { accountId: checkingAccount?.id },
     },
+    ...(savingsAccount?.id
+      ? [{ query: TRANSACTIONS, variables: { accountId: savingsAccount.id } }]
+      : []),
   ];
 
   const { data: txData } = useQuery(TRANSACTIONS, {
     skip: !checkingAccount?.id,
     variables: { accountId: checkingAccount?.id },
+  });
+
+  const { data: savingsTxData } = useQuery(TRANSACTIONS, {
+    skip: !savingsAccount?.id,
+    variables: { accountId: savingsAccount?.id },
   });
 
   const [createTransaction] = useMutation(CREATE_TRANSACTION, {
@@ -190,6 +200,7 @@ const AdminPage: NextPageWithLayout = () => {
   if (!mounted || !hasToken) return null;
 
   const transactions: TransactionItem[] = txData?.transactions ?? [];
+  const savingsTransactions: TransactionItem[] = savingsTxData?.transactions ?? [];
 
   const handleDeposit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -281,6 +292,39 @@ const AdminPage: NextPageWithLayout = () => {
     setSelectedTx(null);
   };
 
+  const computedInterest =
+    interestApy && savingsAccount
+      ? (
+          (parseFloat(interestApy) / 100 / 12) *
+          Number(savingsAccount.balance)
+        ).toFixed(2)
+      : "";
+
+  const handleInterest = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const apy = parseFloat(interestApy);
+    if (isNaN(apy) || apy <= 0 || !savingsAccount) return;
+
+    const monthlyInterest = parseFloat(
+      ((apy / 100 / 12) * Number(savingsAccount.balance)).toFixed(2)
+    );
+
+    await createTransaction({
+      variables: {
+        createTransactionInput: {
+          accountId: savingsAccount.id,
+          transactionType: "DIRECT_DEPOSIT",
+          amount: monthlyInterest,
+          merchantName: "Savings Interest",
+          description: `Monthly interest at ${apy}% APY`,
+          transactionDate: new Date(interestDate).toISOString(),
+        },
+      },
+    });
+    setInterestApy("");
+    setInterestDate(toLocalDatetime(new Date()));
+  };
+
   const hasImages = (tx: TransactionItem) =>
     !!(tx.frontImageUrl || tx.backImageUrl);
 
@@ -336,6 +380,44 @@ const AdminPage: NextPageWithLayout = () => {
         </AC.InputGroup>
         <AC.SubmitButton type="submit" disabled={!depositAmount}>
           Deposit to Checking
+        </AC.SubmitButton>
+      </AC.FormRow>
+
+      <AC.SectionTitle>Savings Interest</AC.SectionTitle>
+      <AC.FormRow onSubmit={handleInterest}>
+        <AC.InputGroup>
+          <AC.InputLabel>APY %</AC.InputLabel>
+          <AC.Input
+            type="number"
+            step="0.01"
+            min="0.01"
+            placeholder="4.50"
+            value={interestApy}
+            onChange={e => setInterestApy(e.target.value)}
+          />
+        </AC.InputGroup>
+        <AC.InputGroup>
+          <AC.InputLabel>Monthly Interest</AC.InputLabel>
+          <AC.Input
+            type="text"
+            readOnly
+            value={computedInterest ? `$${computedInterest}` : ""}
+            placeholder="$0.00"
+          />
+        </AC.InputGroup>
+        <AC.InputGroup>
+          <AC.InputLabel>Date & Time</AC.InputLabel>
+          <AC.Input
+            type="datetime-local"
+            value={interestDate}
+            onChange={e => setInterestDate(e.target.value)}
+          />
+        </AC.InputGroup>
+        <AC.SubmitButton
+          type="submit"
+          disabled={!interestApy || !savingsAccount}
+        >
+          Add Interest to Savings
         </AC.SubmitButton>
       </AC.FormRow>
 
@@ -406,6 +488,101 @@ const AdminPage: NextPageWithLayout = () => {
           </div>
         ) : (
           transactions.map(tx => (
+            <AC.TableRow
+              key={tx.id}
+              onClick={() => {
+                if (hasImages(tx)) setSelectedTx(tx);
+              }}
+              style={{
+                cursor: hasImages(tx) ? "pointer" : "default",
+              }}
+            >
+              <AC.Cell>
+                {editingId === tx.id ? (
+                  <AC.InlineInput
+                    value={editName}
+                    onChange={e => setEditName(e.target.value)}
+                    onClick={e => e.stopPropagation()}
+                  />
+                ) : (
+                  <>
+                    {tx.merchantName || tx.description || tx.transactionType}
+                    {hasImages(tx) && (
+                      <AC.ImageBadge>check</AC.ImageBadge>
+                    )}
+                  </>
+                )}
+              </AC.Cell>
+              <AC.Cell $positive={tx.amount > 0}>
+                {editingId === tx.id ? (
+                  <AC.InlineInput
+                    type="number"
+                    step="0.01"
+                    value={editAmount}
+                    onChange={e => setEditAmount(e.target.value)}
+                    onClick={e => e.stopPropagation()}
+                  />
+                ) : (
+                  <>
+                    {tx.amount > 0 ? "+" : "-"}
+                    {formatCurrency(tx.amount)}
+                  </>
+                )}
+              </AC.Cell>
+              <AC.Cell className="date">
+                {formatDate(tx.transactionDate)}
+              </AC.Cell>
+              <AC.Actions onClick={e => e.stopPropagation()}>
+                {editingId === tx.id ? (
+                  <>
+                    <AC.ActionButton onClick={handleSaveEdit}>
+                      Save
+                    </AC.ActionButton>
+                    <AC.ActionButton onClick={() => setEditingId(null)}>
+                      Cancel
+                    </AC.ActionButton>
+                  </>
+                ) : (
+                  <>
+                    <AC.ActionButton onClick={() => handleStartEdit(tx)}>
+                      Edit
+                    </AC.ActionButton>
+                    <AC.ActionButton
+                      $danger
+                      onClick={() => handleDelete(tx.id)}
+                    >
+                      Delete
+                    </AC.ActionButton>
+                  </>
+                )}
+              </AC.Actions>
+            </AC.TableRow>
+          ))
+        )}
+      </AC.Table>
+
+      <AC.SectionTitle>Savings Transactions</AC.SectionTitle>
+
+      <AC.Table>
+        <AC.TableHeader>
+          <div>Name</div>
+          <div>Amount</div>
+          <div>Date</div>
+          <div>Actions</div>
+        </AC.TableHeader>
+
+        {savingsTransactions.length === 0 ? (
+          <div
+            style={{
+              padding: "2rem",
+              textAlign: "center",
+              color: "#808080",
+            }}
+          >
+            No savings transactions yet
+          </div>
+        ) : (
+          savingsTransactions.map(tx => (
             <AC.TableRow
               key={tx.id}
               onClick={() => {
