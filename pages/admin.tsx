@@ -126,6 +126,7 @@ const AdminPage: NextPageWithLayout = () => {
   const [depositAmount, setDepositAmount] = useState("");
   const [depositDate, setDepositDate] = useState(toLocalDatetime(new Date()));
   const [interestApy, setInterestApy] = useState("");
+  const [interestAmount, setInterestAmount] = useState("");
   const [interestDate, setInterestDate] = useState(toLocalDatetime(new Date()));
 
   // Edit state
@@ -292,36 +293,50 @@ const AdminPage: NextPageWithLayout = () => {
     setSelectedTx(null);
   };
 
-  const computedInterest =
-    interestApy && savingsAccount
-      ? (
-          (parseFloat(interestApy) / 100 / 12) *
-          Number(savingsAccount.balance)
-        ).toFixed(2)
-      : "";
+  const handleApyChange = (value: string) => {
+    setInterestApy(value);
+    if (value && savingsAccount) {
+      const computed = (parseFloat(value) / 100 / 12) * Number(savingsAccount.balance);
+      setInterestAmount(isNaN(computed) ? "" : computed.toFixed(2));
+    } else {
+      setInterestAmount("");
+    }
+  };
+
+  const handleAmountChange = (value: string) => {
+    setInterestAmount(value);
+    if (value && savingsAccount && Number(savingsAccount.balance) > 0) {
+      const apy = (parseFloat(value) / Number(savingsAccount.balance)) * 12 * 100;
+      setInterestApy(isNaN(apy) ? "" : apy.toFixed(2));
+    } else {
+      setInterestApy("");
+    }
+  };
 
   const handleInterest = async (e: React.FormEvent) => {
     e.preventDefault();
-    const apy = parseFloat(interestApy);
-    if (isNaN(apy) || apy <= 0 || !savingsAccount) return;
+    const amt = parseFloat(interestAmount);
+    if (isNaN(amt) || amt <= 0 || !savingsAccount) return;
 
-    const monthlyInterest = parseFloat(
-      ((apy / 100 / 12) * Number(savingsAccount.balance)).toFixed(2)
-    );
+    const apy = interestApy ? parseFloat(interestApy) : 0;
+    const description = apy > 0
+      ? `Monthly interest at ${apy}% APY`
+      : `Monthly interest`;
 
     await createTransaction({
       variables: {
         createTransactionInput: {
           accountId: savingsAccount.id,
           transactionType: "DIRECT_DEPOSIT",
-          amount: monthlyInterest,
+          amount: amt,
           merchantName: "Savings Interest",
-          description: `Monthly interest at ${apy}% APY`,
+          description,
           transactionDate: new Date(interestDate).toISOString(),
         },
       },
     });
     setInterestApy("");
+    setInterestAmount("");
     setInterestDate(toLocalDatetime(new Date()));
   };
 
@@ -393,16 +408,18 @@ const AdminPage: NextPageWithLayout = () => {
             min="0.01"
             placeholder="4.50"
             value={interestApy}
-            onChange={e => setInterestApy(e.target.value)}
+            onChange={e => handleApyChange(e.target.value)}
           />
         </AC.InputGroup>
         <AC.InputGroup>
-          <AC.InputLabel>Monthly Interest</AC.InputLabel>
+          <AC.InputLabel>Monthly Interest $</AC.InputLabel>
           <AC.Input
-            type="text"
-            readOnly
-            value={computedInterest ? `$${computedInterest}` : ""}
-            placeholder="$0.00"
+            type="number"
+            step="0.01"
+            min="0.01"
+            placeholder="3.75"
+            value={interestAmount}
+            onChange={e => handleAmountChange(e.target.value)}
           />
         </AC.InputGroup>
         <AC.InputGroup>
@@ -415,7 +432,7 @@ const AdminPage: NextPageWithLayout = () => {
         </AC.InputGroup>
         <AC.SubmitButton
           type="submit"
-          disabled={!interestApy || !savingsAccount}
+          disabled={!interestAmount || !savingsAccount}
         >
           Add Interest to Savings
         </AC.SubmitButton>
