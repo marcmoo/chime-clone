@@ -123,6 +123,7 @@ const AdminPage: NextPageWithLayout = () => {
   const [newAmount, setNewAmount] = useState("");
   const [newSign, setNewSign] = useState<"+" | "-">("-");
   const [newDate, setNewDate] = useState(toLocalDatetime(new Date()));
+  const [depositName, setDepositName] = useState("Direct Deposit");
   const [depositAmount, setDepositAmount] = useState("");
   const [depositDate, setDepositDate] = useState(toLocalDatetime(new Date()));
   const [interestApy, setInterestApy] = useState("");
@@ -214,12 +215,13 @@ const AdminPage: NextPageWithLayout = () => {
           accountId: checkingAccount.id,
           transactionType: "DIRECT_DEPOSIT",
           amount: amt,
-          merchantName: "Direct Deposit",
-          description: "Direct Deposit",
+          merchantName: depositName.trim() || "Direct Deposit",
+          description: depositName.trim() || "Direct Deposit",
           transactionDate: new Date(depositDate).toISOString(),
         },
       },
     });
+    setDepositName("Direct Deposit");
     setDepositAmount("");
     setDepositDate(toLocalDatetime(new Date()));
   };
@@ -374,6 +376,15 @@ const AdminPage: NextPageWithLayout = () => {
 
       <AC.SectionTitle>Quick Deposit</AC.SectionTitle>
       <AC.FormRow onSubmit={handleDeposit}>
+        <AC.InputGroup>
+          <AC.InputLabel>Name</AC.InputLabel>
+          <AC.Input
+            type="text"
+            placeholder="Direct Deposit"
+            value={depositName}
+            onChange={e => setDepositName(e.target.value)}
+          />
+        </AC.InputGroup>
         <AC.InputGroup>
           <AC.InputLabel>Amount</AC.InputLabel>
           <AC.Input
