@@ -36,7 +36,7 @@ const FaqPage: NextPageWithLayout = () => {
       </BukipingFinancialComponents.Banner.Container>
 
       {/* 2 */}
-      <BukipingFinancialComponents.Section.Container>
+      {/* <BukipingFinancialComponents.Section.Container>
         <BukipingFinancialComponents.Section.Title>
           Financial peace of mind
         </BukipingFinancialComponents.Section.Title>
@@ -88,10 +88,10 @@ const FaqPage: NextPageWithLayout = () => {
             </p>
           </Disclosure>
         </BukipingFinancialComponents.Section.Content>
-      </BukipingFinancialComponents.Section.Container>
+      </BukipingFinancialComponents.Section.Container> */}
 
       {/* 3 */}
-      <BukipingFinancialComponents.Section.Container>
+      {/* <BukipingFinancialComponents.Section.Container>
         <BukipingFinancialComponents.Section.Title>
           Member-obsessed
         </BukipingFinancialComponents.Section.Title>
@@ -231,10 +231,10 @@ const FaqPage: NextPageWithLayout = () => {
             </p>
           </Disclosure>
         </BukipingFinancialComponents.Section.Content>
-      </BukipingFinancialComponents.Section.Container>
+      </BukipingFinancialComponents.Section.Container> */}
 
       {/* 4 */}
-      <BukipingFinancialComponents.Section.Container>
+      {/* <BukipingFinancialComponents.Section.Container>
         <BukipingFinancialComponents.Section.Title>
           Playing by the rules
         </BukipingFinancialComponents.Section.Title>
@@ -313,10 +313,10 @@ const FaqPage: NextPageWithLayout = () => {
             </p>
           </Disclosure>
         </BukipingFinancialComponents.Section.Content>
-      </BukipingFinancialComponents.Section.Container>
+      </BukipingFinancialComponents.Section.Container> */}
 
       {/* 5 */}
-      <BukipingFinancialComponents.Section.Container>
+      {/* <BukipingFinancialComponents.Section.Container>
         <BukipingFinancialComponents.Section.Title>
           Making a difference
         </BukipingFinancialComponents.Section.Title>
@@ -393,7 +393,7 @@ const FaqPage: NextPageWithLayout = () => {
             </p>
           </Disclosure>
         </BukipingFinancialComponents.Section.Content>
-      </BukipingFinancialComponents.Section.Container>
+      </BukipingFinancialComponents.Section.Container> */}
     </>
   );
 };

@@ -96,10 +96,6 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         label: "Online Banking",
       },
       {
-        label: "Second Chance Banking",
-        path: "/second-chance-banking",
-      },
-      {
         label: "Tax Refund",
       },
     ],

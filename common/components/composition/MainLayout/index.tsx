@@ -16,10 +16,6 @@ const Layout: FC<LayoutProps> = props => {
       </Styled.HeaderContainer>
 
       <main>{props.children}</main>
-
-      <Styled.FooterContainer>
-        <Footer />
-      </Styled.FooterContainer>
     </Styled.PageContainer>
   );
 };
