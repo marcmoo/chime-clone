@@ -52,16 +52,16 @@ const LogInPage: NextPageWithLayout = () => {
   return (
     <LogInComponents.Container>
       <Head>
-        <title>Member Login | Chime</title>
-        <meta name="description" content="Chime Clone Member Log In" />
+        <title>Member Login | Bukiping</title>
+        <meta name="description" content="Bukiping Clone Member Log In" />
       </Head>
 
       <LogInComponents.Logo>
         <Link href="/">
           <a>
             <Image
-              src="/static/components/Header/chime-logo.svg"
-              alt="Chime Logo"
+              src="/static/components/Header/bukiping-logo.svg"
+              alt="Bukiping Logo"
               width="130px"
               height="39px"
             />
@@ -118,17 +118,17 @@ const LogInPage: NextPageWithLayout = () => {
       </LogInComponents.Form.Container>
 
       <LogInComponents.Text1>
-        By clicking “Log In”, you agree to receive SMS text messages from Chime
+        By clicking &quot;Log In&quot;, you agree to receive SMS text messages from Bukiping
         to verify your identity
       </LogInComponents.Text1>
 
       <LogInComponents.Text2>
-        © 2022 Chime. All Rights Reserved.
+        © 2022 Bukiping. All Rights Reserved.
       </LogInComponents.Text2>
 
       <LogInComponents.Text3>
         Banking Services provided by The Bancorp Bank or Stride Bank, N.A.,
-        Members FDIC. The Chime Visa® Debit Card is issued by The Bancorp Bank
+        Members FDIC. The Bukiping Visa® Debit Card is issued by The Bancorp Bank
         or Stride Bank pursuant to a license from Visa U.S.A. Inc. and may be
         used everywhere Visa debit cards are accepted. Please see back of your
         Card for its issuing bank.

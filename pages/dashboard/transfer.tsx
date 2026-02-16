@@ -39,7 +39,7 @@ const formatCurrency = (amount: number): string =>
   }).format(amount);
 
 const formatAccountLabel = (type: string, balance: number): string =>
-  `${type === "CHECKING" ? "Chime Checking" : "Savings"} — ${formatCurrency(balance)}`;
+  `${type === "CHECKING" ? "Bukiping Checking" : "Savings"} — ${formatCurrency(balance)}`;
 
 const toLocalDatetime = (d: Date): string => {
   const pad = (n: number) => String(n).padStart(2, "0");
@@ -151,7 +151,7 @@ const TransferPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Transfer | Chime</title>
+        <title>Transfer | Bukiping</title>
         <meta name="description" content="Transfer money between accounts" />
       </Head>
 
@@ -257,7 +257,7 @@ const TransferPage: NextPageWithLayout = () => {
                   <TC.DetailLabel>From</TC.DetailLabel>
                   <TC.DetailValue>
                     {fromAccount?.accountType === "CHECKING"
-                      ? "Chime Checking"
+                      ? "Bukiping Checking"
                       : "Savings"}
                   </TC.DetailValue>
                 </TC.Detail>
@@ -265,7 +265,7 @@ const TransferPage: NextPageWithLayout = () => {
                   <TC.DetailLabel>To</TC.DetailLabel>
                   <TC.DetailValue>
                     {toAccount?.accountType === "CHECKING"
-                      ? "Chime Checking"
+                      ? "Bukiping Checking"
                       : "Savings"}
                   </TC.DetailValue>
                 </TC.Detail>

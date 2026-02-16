@@ -11,15 +11,15 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Second Change Banking: Open an Account Today | Chime</title>
-        <meta name="description" content="Chime Clone Second Change Banking" />
+        <title>Second Change Banking: Open an Account Today | Bukiping</title>
+        <meta name="description" content="Bukiping Clone Second Change Banking" />
       </Head>
 
       {/* 1 */}
       <BannerSection
         img={{
           align: "center",
-          src: "/static/pages/second-chance-banking/chime-app-and-card.png",
+          src: "/static/pages/second-chance-banking/bukiping-app-and-card.png",
           alt: "Shield",
           originalSize: [964, 1024],
           width: {
@@ -29,7 +29,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
           },
         }}
       >
-        <small>Chime Second Chance Banking</small>
+        <small>Bukiping Second Chance Banking</small>
 
         <h1>Banking the way it should be.</h1>
 
@@ -80,9 +80,9 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
 
         <p>
           If you&apos;ve been denied a traditional bank account because of bad
-          credit, Chime is here to help with a long list of unique features that
+          credit, Bukiping is here to help with a long list of unique features that
           provide a great second chance banking option. Unlike traditional bank
-          accounts, Chime is built to help you take control of your financial
+          accounts, Bukiping is built to help you take control of your financial
           health. We help you on your path to rebuilding your financial life by
           offering a bank account that doesn&apos;t use reports such as those
           furnished by ChexSystems and has no monthly fees.
@@ -136,13 +136,13 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
         </p>
 
         <p>
-          Chime&apos;s Automatic Savings is one tool that Chime provides to help
+          Bukiping&apos;s Automatic Savings is one tool that Bukiping provides to help
           you grow your savings automatically.
         </p>
 
         <ul>
           <li>
-            Every time you use your Chime debit card, we round up the
+            Every time you use your Bukiping debit card, we round up the
             transaction in your Checking Account to the nearest dollar and and
             transfer the remainder into your Savings Account. It&apos;s an easy
             way to start building your savings with every swipe.
@@ -150,7 +150,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
 
           <li>
             Save every time you get paid with direct deposit. When you set up
-            direct deposit with Chime, you can automatically deduct a percentage
+            direct deposit with Bukiping, you can automatically deduct a percentage
             of every direct deposit and transfer it to your Savings Account.
           </li>
         </ul>
@@ -161,7 +161,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
         img={{
           float: "right",
           src: "/static/pages/second-chance-banking/control.png",
-          alt: "Chime Control",
+          alt: "Bukiping Control",
           originalSize: [1400, 835],
           width: {
             sm: 503,
@@ -170,7 +170,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
           },
         }}
       >
-        <h2>Chime is a Second Chance Banking Option with No Monthly Fees</h2>
+        <h2>Bukiping is a Second Chance Banking Option with No Monthly Fees</h2>
 
         <p>
           Many standard checking accounts and savings accounts can be expensive
@@ -183,8 +183,8 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
         </p>
 
         <p>
-          Chime offers a second chance bank account with no unnecessary fees.
-          Keep more of your hard-earned money and sign up for a Chime account:
+          Bukiping offers a second chance bank account with no unnecessary fees.
+          Keep more of your hard-earned money and sign up for a Bukiping account:
         </p>
 
         <ul>
@@ -235,7 +235,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
 
         <p>
           When evaluating prepaid debit cards, it is wise to consider prepaid
-          alternatives. Chime is one of the best prepaid debit card alternatives
+          alternatives. Bukiping is one of the best prepaid debit card alternatives
           available on the market. Here&apos;s why:
         </p>
 
@@ -245,7 +245,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
           </li>
 
           <li>
-            Chime provides both a Checking Account and a Savings Account along
+            Bukiping provides both a Checking Account and a Savings Account along
             with a Visa® Debit card.
           </li>
 
@@ -260,14 +260,14 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
       <MonoSection backgroundColor={COLORS.WHITE} textAlign="start" width={700}>
         <h2>A Second Chance to Rebuild Your Financial Health</h2>
 
-        <p>At Chime, we&apos;re changing the way people feel about banking.</p>
+        <p>At Bukiping, we&apos;re changing the way people feel about banking.</p>
 
         <p>
           We are dedicated to helping our members lead healthy financial lives.
           That&apos;s why we offer an award-winning mobile banking app that
           doesn&apos;t charge monthly fees, gives members early access to their
           paychecks * with direct deposit, and helps them save money
-          automatically. Hundreds of thousands of people use the Chime Visa®
+          automatically. Hundreds of thousands of people use the Bukiping Visa®
           Debit Card to make purchases, track spending, save for the future, and
           more.
         </p>
@@ -277,7 +277,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
           we want to help you get back on track toward a healthy financial
           future. That starts with finding the right partner who will never
           charge you fees and provides tools to help you start building better
-          financial habits. We hope that Chime can be your partner in this
+          financial habits. We hope that Bukiping can be your partner in this
           journey to financial health.
         </p>
       </MonoSection>
@@ -323,7 +323,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
           Building a spending plan and working budget allows you to live within
           your means and spend only what you can afford, which will help ensure
           you never get to a negative balance. You may also want to consider
-          banking options such as Chime which never charges unnecessary fees.
+          banking options such as Bukiping which never charges unnecessary fees.
         </p>
       </MonoSection>
 
@@ -332,7 +332,7 @@ const SecondChangeBankingPage: NextPageWithLayout = () => {
         <h2>Ready for Your Second Chance?</h2>
 
         <p>
-          Chime is a great second chance banking option to help you take back
+          Bukiping is a great second chance banking option to help you take back
           control of your finances. Apply today if you are ready to:
         </p>
 

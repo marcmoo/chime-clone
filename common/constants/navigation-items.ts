@@ -57,7 +57,7 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
   },
   {
     label: "Who we are",
-    path: "/chime-financial",
+    path: "/bukiping-financial",
     subitems: [
       {
         label: "About Us",
@@ -67,8 +67,8 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         label: "In the News",
       },
       {
-        label: "Chime Financial, Inc.",
-        path: "/chime-financial",
+        label: "Bukiping Financial, Inc.",
+        path: "/bukiping-financial",
       },
       {
         label: "In The Community",

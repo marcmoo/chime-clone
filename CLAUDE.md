@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Chime Clone is a Next.js 12 clone of the [Chime](https://www.chime.com/) banking website. It uses React 18, TypeScript 4.8, styled-components for CSS-in-JS, and Apollo Client 3.x for GraphQL communication with the NestJS backend (`chime-clone-api`). Auth uses JWT stored in localStorage.
+Bukiping Clone is a Next.js 12 banking website. It uses React 18, TypeScript 4.8, styled-components for CSS-in-JS, and Apollo Client 3.x for GraphQL communication with the NestJS backend (`bukiping-clone-api`). Auth uses JWT stored in localStorage.
 
 ## Commands
 
@@ -80,17 +80,17 @@ Configured in `tsconfig.json` — use these for imports:
 
 ## Production Deployment
 - **Server:** Hostinger KVM 2 VPS (193.46.198.236)
-- **Path:** `/var/www/chime-clone`
-- **Process manager:** PM2 (name: `chime-web`, port 3001)
+- **Path:** `/var/www/bukiping-clone`
+- **Process manager:** PM2 (name: `bukiping-web`, port 3001)
 - **Nginx:** Port 8080 proxying to localhost:3001
 - **URL:** `http://193.46.198.236:8080`
 - **Backend API:** `http://193.46.198.236/chime/graphql`
 - **Deploy script:** `./deploy-production.sh`
 - `NEXT_PUBLIC_GRAPHQL_URL` must be set at **build time** (baked into client bundle)
 
-## Backend (chime-clone-api)
+## Backend (bukiping-clone-api)
 
-Separate NestJS repo at `~/projects/chime-clone-api`. GraphQL code-first, TypeORM + MySQL.
+Separate NestJS repo at `~/projects/bukiping-clone-api`. GraphQL code-first, TypeORM + MySQL.
 
 - 4 entities: User, Account, Transaction, Card
 - 6 modules: Users, Auth, Accounts, Transactions, Cards, Uploads + SeedModule

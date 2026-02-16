@@ -18,8 +18,8 @@ const NoFeesPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Banking with No Monthly Fees and No Overdraft | Chime</title>
-        <meta name="description" content="Chime Clone No Fees" />
+        <title>Banking with No Monthly Fees and No Overdraft | Bukiping</title>
+        <meta name="description" content="Bukiping Clone No Fees" />
       </Head>
 
       {/* 1 */}
@@ -39,7 +39,7 @@ const NoFeesPage: NextPageWithLayout = () => {
 
         <h1>Banking with no monthly fees</h1>
 
-        <p>Say goodbye to monthly fees when you bank through Chime</p>
+        <p>Say goodbye to monthly fees when you bank through Bukiping</p>
 
         <ul>
           <li>No monthly fees and no minimum balance fees</li>
@@ -61,7 +61,7 @@ const NoFeesPage: NextPageWithLayout = () => {
           Policy
         </small>
         <small>
-          Chime is a financial technology company, not a bank. Banking services
+          Bukiping is a financial technology company, not a bank. Banking services
           provided by The Bancorp Bank, N.A. or Stride Bank, N.A.; Members FDIC
         </small>
       </BannerSection>
@@ -85,7 +85,7 @@ const NoFeesPage: NextPageWithLayout = () => {
         <p>
           You earned it, so you deserve to keep it. We believe an online
           checking account with no monthly fees should be available to everyone.
-          That&apos;s why Chime offers a checking account with no minimum
+          That&apos;s why Bukiping offers a checking account with no minimum
           balance fees and no monthly fees.
         </p>
       </DualSection>
@@ -108,7 +108,7 @@ const NoFeesPage: NextPageWithLayout = () => {
 
         <p>
           Traditional banks charged $11 Billion in overdraft fees in 2019.² At
-          Chime, we do things differently. Instead of charging you an overdraft
+          Bukiping, we do things differently. Instead of charging you an overdraft
           fee, we allow you to overdraft on debit card purchases with no fees
           when you qualify for SpotMe<sup>®3</sup>. Learn more about SpotMe.
         </p>
@@ -135,11 +135,11 @@ const NoFeesPage: NextPageWithLayout = () => {
         </h1>
 
         <p>
-          Avoid out of network ATM fees. With Chime, you get access to 60,000+
+          Avoid out of network ATM fees. With Bukiping, you get access to 60,000+
           fee-free ATMs<sup>1</sup>—more than the top 3 national banks combined!
           Find them at stores you love, like Walgreens<sup>®</sup>, CVS
           <sup>®</sup>, 7-Eleven<sup>®</sup> and Circle K. You can also use the
-          map in your Chime app to find the closest fee-free ATM near you.
+          map in your Bukiping app to find the closest fee-free ATM near you.
         </p>
 
         <Image
@@ -168,7 +168,7 @@ const NoFeesPage: NextPageWithLayout = () => {
         <h1>Checking Account and Debit Card with no monthly fees</h1>
 
         <p>
-          When you open a Chime Checking Account, you will receive a Visa Debit
+          When you open a Bukiping Checking Account, you will receive a Visa Debit
           Card that can be used everywhere Visa debit cards are accepted. We
           also provide free debit card replacement.
         </p>

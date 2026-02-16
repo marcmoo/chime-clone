@@ -42,8 +42,8 @@ const Header: FC = () => {
         <Link href="/">
           <h1>
             <Image
-              src="/static/components/Header/chime-logo.svg"
-              alt="Chime Logo"
+              src="/static/components/Header/bukiping-logo.svg"
+              alt="Bukiping Logo"
               width="90px"
               height="30px"
             />
@@ -124,8 +124,8 @@ const Header: FC = () => {
           <Link href="/">
             <h1>
               <Image
-                src="/static/components/Header/chime-logo.svg"
-                alt="Chime Logo"
+                src="/static/components/Header/bukiping-logo.svg"
+                alt="Bukiping Logo"
                 width="90px"
                 height="30px"
               />

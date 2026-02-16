@@ -189,8 +189,8 @@ const DashboardPage: NextPageWithLayout = () => {
   return (
     <DashboardComponents.Container>
       <Head>
-        <title>Dashboard | Chime</title>
-        <meta name="description" content="Your Chime Dashboard" />
+        <title>Dashboard | Bukiping</title>
+        <meta name="description" content="Your Bukiping Dashboard" />
       </Head>
 
       <DashboardComponents.Greeting>
@@ -207,7 +207,7 @@ const DashboardPage: NextPageWithLayout = () => {
             {checkingAccount && (
               <DashboardComponents.AccountCard>
                 <div className="label">Available</div>
-                <div className="type">Chime Checking</div>
+                <div className="type">Bukiping Checking</div>
                 <div className="balance">
                   {formatCurrency(checkingAccount.balance)}
                 </div>
@@ -246,7 +246,7 @@ const DashboardPage: NextPageWithLayout = () => {
                 $active={activeTab === "CHECKING"}
                 onClick={() => setActiveTab("CHECKING")}
               >
-                Chime
+                Bukiping
               </DashboardComponents.Tab>
               <DashboardComponents.Tab
                 $active={activeTab === "SAVINGS"}

@@ -27,8 +27,8 @@ const DashboardLayout: FC<LayoutProps> = ({ children }) => {
           <Link href="/dashboard" passHref legacyBehavior>
             <Styled.Logo>
               <img
-                src="/static/components/Header/chime-logo.svg"
-                alt="Chime Logo"
+                src="/static/components/Header/bukiping-logo.svg"
+                alt="Bukiping Logo"
                 height={28}
               />
             </Styled.Logo>

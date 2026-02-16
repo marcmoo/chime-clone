@@ -10,7 +10,7 @@ export * as SignUpComponents from "./sign-up";
 
 export * as SecurityAndControlComponents from "./security-and-control";
 
-export * as ChimeFinancialComponents from "./chime-financial";
+export * as BukipingFinancialComponents from "./bukiping-financial";
 
 export * as DashboardComponents from "./dashboard";
 

@@ -1,16 +1,16 @@
 #!/bin/bash
 set -e
 
-# Chime Clone Frontend — Production Deployment Script
+# Bukiping Clone Frontend — Production Deployment Script
 # Server: 193.46.198.236
-# Path: /var/www/chime-clone
+# Path: /var/www/bukiping-clone
 
 SERVER="root@193.46.198.236"
-REMOTE_DIR="/var/www/chime-clone"
-PM2_APP="chime-web"
+REMOTE_DIR="/var/www/bukiping-clone"
+PM2_APP="bukiping-web"
 GRAPHQL_URL="http://193.46.198.236/chime/graphql"
 
-echo "=== Chime Clone Frontend — Production Deploy ==="
+echo "=== Bukiping Clone Frontend — Production Deploy ==="
 
 # Step 1: SSH into server, pull latest code, install & build
 echo "[1/3] Deploying to server..."

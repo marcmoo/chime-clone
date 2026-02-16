@@ -23,9 +23,9 @@ const HomePage: NextPageWithLayout = () => {
     <>
       <Head>
         <title>
-          Chime - Banking with No Monthly Fees. Fee-Free Overdraft. Build Craft.
+          Bukiping - Banking with No Monthly Fees. Fee-Free Overdraft. Build Craft.
         </title>
-        <meta name="description" content="Chime Clone Home Page" />
+        <meta name="description" content="Bukiping Clone Home Page" />
       </Head>
 
       {/* 1 */}
@@ -56,7 +56,7 @@ const HomePage: NextPageWithLayout = () => {
               Privacy Policy
             </small>
             <small>
-              Chime is a financial technology company, not a bank. Banking
+              Bukiping is a financial technology company, not a bank. Banking
               services provided by The Bancorp Bank, N.A. or Stride Bank, N.A.;
               Members FDIC
             </small>
@@ -86,7 +86,7 @@ const HomePage: NextPageWithLayout = () => {
               Privacy Policy
             </small>
             <small>
-              Chime is a financial technology company, not a bank. Banking
+              Bukiping is a financial technology company, not a bank. Banking
               services provided by The Bancorp Bank, N.A. or Stride Bank, N.A.;
               Members FDIC
             </small>
@@ -118,7 +118,7 @@ const HomePage: NextPageWithLayout = () => {
               Privacy Policy
             </small>
             <small>
-              Chime is a financial technology company, not a bank. Banking
+              Bukiping is a financial technology company, not a bank. Banking
               services provided by The Bancorp Bank, N.A. or Stride Bank, N.A.;
               Members FDIC
             </small>
@@ -150,7 +150,7 @@ const HomePage: NextPageWithLayout = () => {
               Privacy Policy
             </small>
             <small>
-              Chime is a financial technology company, not a bank. Banking
+              Bukiping is a financial technology company, not a bank. Banking
               services provided by The Bancorp Bank, N.A. or Stride Bank, N.A.;
               Members FDIC
             </small>
@@ -180,7 +180,7 @@ const HomePage: NextPageWithLayout = () => {
               Privacy Policy
             </small>
             <small>
-              Chime is a financial technology company, not a bank. Banking
+              Bukiping is a financial technology company, not a bank. Banking
               services provided by The Bancorp Bank, N.A. or Stride Bank, N.A.;
               Members FDIC
             </small>
@@ -262,7 +262,7 @@ const HomePage: NextPageWithLayout = () => {
       </DualSection>
 
       {/* 5 */}
-      <DualSection
+      {/* <DualSection
         img={{
           float: "left",
           src: "/static/pages/home/credit-builder.png",
@@ -292,7 +292,7 @@ const HomePage: NextPageWithLayout = () => {
             credit score.
           </small>
         </p>
-      </DualSection>
+      </DualSection> */}
 
       {/* 6 */}
       <DualSection
@@ -386,7 +386,7 @@ const HomePage: NextPageWithLayout = () => {
             <h3>Serious security</h3>
 
             <p>
-              Chime uses secure processes to protect your information and help
+              Bukiping uses secure processes to protect your information and help
               prevent unauthorized use
             </p>
 
@@ -400,7 +400,7 @@ const HomePage: NextPageWithLayout = () => {
             <h3>Anytime, anywhere support</h3>
 
             <p>
-              If you need help, Chime&apos;s support channels are standing by
+              If you need help, Bukiping&apos;s support channels are standing by
               24/7. Reach our friendly team by phone, email, in the app, or
               check out the Help Center.
             </p>
@@ -412,8 +412,8 @@ const HomePage: NextPageWithLayout = () => {
       <DualSection
         img={{
           float: "right",
-          src: "/static/pages/home/chime-reviews.png",
-          alt: "Chime Reviews",
+          src: "/static/pages/home/bukiping-reviews.png",
+          alt: "Bukiping Reviews",
           originalSize: [884, 568],
           width: {
             sm: 465,

@@ -14,8 +14,8 @@ const SecurityAndControlPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Security and Control | Chime</title>
-        <meta name="description" content="Chime Clone Security and Control" />
+        <title>Security and Control | Bukiping</title>
+        <meta name="description" content="Bukiping Clone Security and Control" />
       </Head>
 
       {/* 1 */}
@@ -36,7 +36,7 @@ const SecurityAndControlPage: NextPageWithLayout = () => {
         <h1>We take security seriously</h1>
 
         <p>
-          At Chime, information security is a top priority. Deposits are FDIC
+          At Bukiping, information security is a top priority. Deposits are FDIC
           insured up to $250,000 through The Bancorp Bank or Stride Bank, N.A.,
           Members FDIC. And we work hard to protect your information, such as by
           using encryption and other measures to help safeguard your money and
@@ -63,8 +63,8 @@ const SecurityAndControlPage: NextPageWithLayout = () => {
 
         <p>
           If your card is missing or you suspect unauthorized use, you can block
-          all transactions on your Chime debit card and Credit Builder card.
-          Open the Chime app and disable transactions to immediately prevent new
+          all transactions on your Bukiping debit card and Credit Builder card.
+          Open the Bukiping app and disable transactions to immediately prevent new
           debit or credit card purchases or ATM withdrawals.
         </p>
       </DualSection>
@@ -87,8 +87,8 @@ const SecurityAndControlPage: NextPageWithLayout = () => {
 
         <p>
           If your card is missing or you suspect unauthorized use, you can block
-          all transactions on your Chime debit card and Credit Builder card.
-          Open the Chime app and disable transactions to immediately prevent new
+          all transactions on your Bukiping debit card and Credit Builder card.
+          Open the Bukiping app and disable transactions to immediately prevent new
           debit or credit card purchases or ATM withdrawals.
         </p>
       </DualSection>
@@ -126,7 +126,7 @@ const SecurityAndControlPage: NextPageWithLayout = () => {
           <h3>Visa Zero Liability</h3>
 
           <p>
-            Shop worry-free at millions of merchants. Chime debit cards are
+            Shop worry-free at millions of merchants. Bukiping debit cards are
             protected by the Visa Zero Liability** Policy to ensure that
             cardholders will not be responsible for unauthorized charges.
           </p>

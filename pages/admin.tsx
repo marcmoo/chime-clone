@@ -348,7 +348,7 @@ const AdminPage: NextPageWithLayout = () => {
   return (
     <AC.AdminContainer>
       <Head>
-        <title>Admin | Chime</title>
+        <title>Admin | Bukiping</title>
         <meta name="description" content="Admin Panel" />
       </Head>
 

@@ -12,9 +12,9 @@ const SavingsAccountPage: NextPageWithLayout = () => {
     <>
       <Head>
         <title>
-          Chime High Interest Savings | Earn 1.50% APY on Any Balance
+          Bukiping High Interest Savings | Earn 1.50% APY on Any Balance
         </title>
-        <meta name="description" content="Chime Clone Account Savings" />
+        <meta name="description" content="Bukiping Clone Account Savings" />
       </Head>
 
       {/* 1 */}
@@ -30,7 +30,7 @@ const SavingsAccountPage: NextPageWithLayout = () => {
           },
         }}
       >
-        <small>High Yield Chime Savings Account</small>
+        <small>High Yield Bukiping Savings Account</small>
 
         <h1>Make your money grow faster</h1>
 
@@ -137,7 +137,7 @@ const SavingsAccountPage: NextPageWithLayout = () => {
         <p>
           We use encryption and secure processes to help ensure your money is
           safe. And your funds are held at FDIC insured banks<sup>5</sup>. Learn
-          how the Chime Savings Account works.
+          how the Bukiping Savings Account works.
         </p>
       </DualSection>
 

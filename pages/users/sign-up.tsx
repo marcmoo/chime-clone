@@ -65,16 +65,16 @@ const SignUpPage: NextPageWithLayout<PageData> = props => {
   return (
     <SignUpComponents.Container>
       <Head>
-        <title>Apply Today | Chime</title>
-        <meta name="description" content="Chime Clone Sign Up" />
+        <title>Apply Today | Bukiping</title>
+        <meta name="description" content="Bukiping Clone Sign Up" />
       </Head>
 
       <SignUpComponents.Logo>
         <Link href="/" passHref>
           <a>
             <Image
-              src="/static/components/Header/chime-logo.svg"
-              alt="Chime Logo"
+              src="/static/components/Header/bukiping-logo.svg"
+              alt="Bukiping Logo"
               width="130px"
               height="39px"
             />
@@ -209,11 +209,11 @@ const SignUpPage: NextPageWithLayout<PageData> = props => {
 
       <SignUpComponents.Disclaimer.Container>
         <SignUpComponents.Disclaimer.Item>
-          By applying for a Chime Checking Account, you are providing your
-          contact information to The Bancorp Bank or Stride Bank N.A. and Chime
+          By applying for a Bukiping Checking Account, you are providing your
+          contact information to The Bancorp Bank or Stride Bank N.A. and Bukiping
           for their own separate uses, including marketing. Please review The
           Bancorp Bank&apos;s Privacy Policy, Stride Bank N.A. Privacy Policy,
-          and Chime&apos;s Privacy Policy.
+          and Bukiping&apos;s Privacy Policy.
         </SignUpComponents.Disclaimer.Item>
 
         <SignUpComponents.Disclaimer.Item>
@@ -228,12 +228,12 @@ const SignUpPage: NextPageWithLayout<PageData> = props => {
         </SignUpComponents.Disclaimer.Item>
 
         <SignUpComponents.Disclaimer.Item>
-          © 2022 Chime. All Rights Reserved.
+          © 2022 Bukiping. All Rights Reserved.
         </SignUpComponents.Disclaimer.Item>
 
         <SignUpComponents.Disclaimer.Item>
           Banking Services provided by The Bancorp Bank or Stride Bank, N.A.,
-          Members FDIC. The Chime Visa® Debit Card is issued by The Bancorp Bank
+          Members FDIC. The Bukiping Visa® Debit Card is issued by The Bancorp Bank
           or Stride Bank, N.A. pursuant to a license from Visa U.S.A. Inc. and
           may be used everywhere Visa debit cards are accepted.
         </SignUpComponents.Disclaimer.Item>

@@ -41,29 +41,29 @@ const Footer: FC = () => {
           <Styled.HorizontalLine hideAt={BREAKPOINTS.LG} />
 
           <Styled.SocialSection>
-            <a href="https://apps.apple.com/us/app/chime-banking/id836215269">
+            <a href="#">
               <Image
                 src="/static/components/Footer/app-store.png"
-                alt="Chime App Store Download"
+                alt="Bukiping App Store Download"
                 width="170px"
                 height="40px"
               />
             </a>
 
-            <a href="https://play.google.com/store/apps/details?id=com.onedebit.chime&hl=en">
+            <a href="#">
               <Image
                 src="/static/components/Footer/google-play.png"
-                alt="Chime Google Play Download"
+                alt="Bukiping Google Play Download"
                 width="170px"
                 height="40px"
               />
             </a>
 
             <Styled.IconWrapper>
-              <a href="https://www.facebook.com/chime">
+              <a href="#">
                 <Image
                   src="/static/components/Footer/facebook-bw.png"
-                  alt="Chime Facebook"
+                  alt="Bukiping Facebook"
                   width="32px"
                   height="32px"
                 />
@@ -71,10 +71,10 @@ const Footer: FC = () => {
             </Styled.IconWrapper>
 
             <Styled.IconWrapper>
-              <a href="https://twitter.com/chime">
+              <a href="#">
                 <Image
                   src="/static/components/Footer/twitter-bw.png"
-                  alt="Chime Twitter"
+                  alt="Bukiping Twitter"
                   width="32px"
                   height="32px"
                 />
@@ -82,10 +82,10 @@ const Footer: FC = () => {
             </Styled.IconWrapper>
 
             <Styled.IconWrapper>
-              <a href="https://www.instagram.com/Chime/">
+              <a href="#">
                 <Image
                   src="/static/components/Footer/instagram-bw.png"
-                  alt="Chime Instagram"
+                  alt="Bukiping Instagram"
                   width="32px"
                   height="32px"
                 />
@@ -99,50 +99,50 @@ const Footer: FC = () => {
         <Styled.DisclaimerSection>
           <p>
             Banking services provided by The Bancorp Bank or Stride Bank, N.A.,
-            Members FDIC. The Chime Visa® Debit Card is issued by The Bancorp
+            Members FDIC. The Bukiping Visa® Debit Card is issued by The Bancorp
             Bank or Stride Bank pursuant to a license from Visa U.S.A. Inc. and
-            may be used everywhere Visa debit cards are accepted. The Chime
+            may be used everywhere Visa debit cards are accepted. The Bukiping
             Visa® Credit Builder Card is issued by Stride Bank pursuant to a
             license from Visa U.S.A. Inc. and may be used everywhere Visa credit
             cards are accepted. Please see back of your Card for its issuing
             bank.
           </p>
           <p>
-            While Chime doesn&apos;t issue personal checkbooks to write checks,
-            Chime Checkbook gives you the freedom to send checks to anyone,
+            While Bukiping doesn&apos;t issue personal checkbooks to write checks,
+            Bukiping Checkbook gives you the freedom to send checks to anyone,
             anytime, from anywhere. See your issuing bank&apos;s Deposit Account
-            Agreement for full Chime Checkbook details.
+            Agreement for full Bukiping Checkbook details.
           </p>
           <p>
-            By clicking on some of the links above, you will leave the Chime
+            By clicking on some of the links above, you will leave the Bukiping
             website and be directed to a third-party website. The privacy
-            practices of those third parties may differ from those of Chime. We
+            practices of those third parties may differ from those of Bukiping. We
             recommend you review the privacy statements of those third party
-            websites, as Chime is not responsible for those third parties&apos;
+            websites, as Bukiping is not responsible for those third parties&apos;
             privacy or security practices.
           </p>
           <p>
-            #1 Most Loved Banking App Source: Chime received the highest 2021
+            #1 Most Loved Banking App Source: Bukiping received the highest 2021
             Net Promoter Score among competitors in the industry according to
-            Qualtrics®. Chime was the 2021 #1 most downloaded banking app in the
+            Qualtrics®. Bukiping was the 2021 #1 most downloaded banking app in the
             US according to Apptopia®.
           </p>
           <p>
-            <sup>1</sup> Chime SpotMe is an optional, no fee service that
+            <sup>1</sup> Bukiping SpotMe is an optional, no fee service that
             requires a single deposit of $200 or more in qualifying direct
-            deposits to the Chime Checking Account each month and Visa debit
+            deposits to the Bukiping Checking Account each month and Visa debit
             card activation. All qualifying members will be allowed to overdraw
             their account up to $20 on debit card purchases and cash withdrawals
             initially, but may be later eligible for a higher limit of up to
-            $200 or more based on member&apos;s Chime Account history, direct
+            $200 or more based on member&apos;s Bukiping Account history, direct
             deposit frequency and amount, spending activity and other risk-based
-            factors. Your limit will be displayed to you within the Chime mobile
+            factors. Your limit will be displayed to you within the Bukiping mobile
             app. You will receive notice of any changes to your limit. Your
-            limit may change at any time, at Chime&apos;s discretion. Although
+            limit may change at any time, at Bukiping&apos;s discretion. Although
             there are no overdraft fees, there may be out-of-network or third
             party fees associated with ATM transactions. SpotMe won&apos;t cover
             non-debit card transactions, including ACH transfers, Pay Anyone
-            transfers, or Chime Checkbook transactions. See terms and
+            transfers, or Bukiping Checkbook transactions. See terms and
             conditions.
           </p>
           <p>
@@ -181,24 +181,24 @@ const Footer: FC = () => {
           <p>
             <sup>6</sup> Sometimes instant transfers can be delayed. The
             recipient must use a valid debit card to claim funds. Once you are
-            approved for a Chime Checking Account, see your issuing bank&apos;s
+            approved for a Bukiping Checking Account, see your issuing bank&apos;s
             Deposit Account Agreement for full Pay Anyone Transfers details.
-            Please see the back of your Chime debit card for your issuing bank.
+            Please see the back of your Bukiping debit card for your issuing bank.
             See Terms and Conditions
           </p>
           <p>
             <sup>7</sup> The Annual Percentage Yield (&quot;APY&quot;) for the
-            Chime Savings Account is variable and may change at any time. The
+            Bukiping Savings Account is variable and may change at any time. The
             disclosed APY is accurate as of August 25th, 2022. No minimum
             balance required. Must have $0.01 in savings to earn interest.
           </p>
           <p>
             Licenses
             <br />
-            Chime Capital, LLC, Nationwide Multistate Licensing System
+            Bukiping Capital, LLC, Nationwide Multistate Licensing System
             (&quot;NMLS&quot;) ID 2316451
           </p>
-          <p>© 2013-2022 Chime. All Rights Reserved.</p>
+          <p>© 2013-2022 Bukiping. All Rights Reserved.</p>
         </Styled.DisclaimerSection>
       </ContentContainer>
     </Styled.Footer>

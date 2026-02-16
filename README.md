@@ -1,6 +1,6 @@
-# Chime Clone
+# Bukiping Clone
 
-A clone of the [Chime](https://www.chime.com/) banking website built with Next.js, React, and styled-components. Connects to a NestJS GraphQL backend ([chime-clone-api](https://github.com/marcmoo/chime-clone-api)).
+A banking website built with Next.js, React, and styled-components. Connects to a NestJS GraphQL backend ([bukiping-clone-api](https://github.com/marcmoo/bukiping-clone-api)).
 
 ## Features
 
@@ -26,13 +26,13 @@ A clone of the [Chime](https://www.chime.com/) banking website built with Next.j
 ### Prerequisites
 
 - Node.js 20+
-- [chime-clone-api](https://github.com/marcmoo/chime-clone-api) running on port 4000
+- [bukiping-clone-api](https://github.com/marcmoo/bukiping-clone-api) running on port 4000
 
 ### Installation
 
 ```bash
-git clone https://github.com/marcmoo/chime-clone.git
-cd chime-clone
+git clone https://github.com/marcmoo/bukiping-clone.git
+cd bukiping-clone
 npm install
 ```
 
@@ -67,7 +67,7 @@ pages/
   admin.tsx                    # Transaction admin panel
   users/log-in.tsx             # Login
   users/sign-up.tsx            # Registration
-  chime-financial.tsx          # Marketing pages
+  bukiping-financial.tsx        # Marketing pages
   debit-card.tsx
   savings-account.tsx
   ...
@@ -99,11 +99,11 @@ common/
 
 ```bash
 ssh root@193.46.198.236
-cd /var/www/chime-clone
+cd /var/www/bukiping-clone
 git pull origin main
 npm install
 NEXT_PUBLIC_GRAPHQL_URL=http://193.46.198.236/chime/graphql npm run build
-pm2 delete chime-web && pm2 start npm --name chime-web -- start -- -p 3001
+pm2 delete bukiping-web && pm2 start npm --name bukiping-web -- start -- -p 3001
 pm2 save
 ```
 
@@ -111,8 +111,8 @@ pm2 save
 
 | Component | Value |
 |-----------|-------|
-| Path | `/var/www/chime-clone` |
-| PM2 name | `chime-web` |
+| Path | `/var/www/bukiping-clone` |
+| PM2 name | `bukiping-web` |
 | App port | 3001 |
 | Nginx port | 8080 |
 | URL | `http://193.46.198.236:8080` |
@@ -120,7 +120,7 @@ pm2 save
 
 ## Credits
 
-UI design based on the original [Chime](https://www.chime.com/) website.
+UI design based on the original Bukiping website.
 
 ## License
 
